@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
+//Github -> https://github.com/GeorgiBarbutov/TU-OOP-ShapeMaker
+
 namespace ShapeMaker
 {
     static class Program
