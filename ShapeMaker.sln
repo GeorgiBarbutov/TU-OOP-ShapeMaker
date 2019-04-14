@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeMaker", "ShapeMaker\ShapeMaker.csproj", "{45FC8193-2A79-4577-92F1-E441B7DB3BC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeMaker.Models", "ShapeMaker.Models\ShapeMaker.Models.csproj", "{B8876C38-72DF-4270-B3A7-B102C944E69B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45FC8193-2A79-4577-92F1-E441B7DB3BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45FC8193-2A79-4577-92F1-E441B7DB3BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45FC8193-2A79-4577-92F1-E441B7DB3BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45FC8193-2A79-4577-92F1-E441B7DB3BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8876C38-72DF-4270-B3A7-B102C944E69B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8876C38-72DF-4270-B3A7-B102C944E69B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8876C38-72DF-4270-B3A7-B102C944E69B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8876C38-72DF-4270-B3A7-B102C944E69B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5014BB2-C981-4B9A-8186-B037F407E3DA}
+	EndGlobalSection
+EndGlobal
