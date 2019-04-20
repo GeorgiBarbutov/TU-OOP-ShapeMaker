@@ -1,47 +1,39 @@
-﻿using System;
+﻿using ShapeMaker.Models.Contracts;
+using System;
+using System.Drawing;
 
 namespace ShapeMaker.Models
 {
-    public class Triangle : Shape
+    public class Triangle : Shape, ITriangle
     {
-        private decimal pointA_XCoordinate;
-        private decimal pointA_YCoordinate;
-        private decimal pointB_XCoordinate;
-        private decimal pointB_YCoordinate;
-        private decimal pointC_XCoordinate;
-        private decimal pointC_YCoordinate;
-
-        public Triangle(decimal pointA_XCoordinate, decimal pointA_YCoordinate,
-            decimal pointB_XCoordinate, decimal pointB_YCoordinate, decimal pointC_XCoordinate,
-            decimal pointC_YCoordinate, ConsoleColor color) : base(color)
+        public Triangle(PointF pointA, PointF pointB, PointF pointC, Color color) : base(color)
         {
-            SetValues(pointA_XCoordinate, pointA_YCoordinate, pointB_XCoordinate, pointB_YCoordinate,
-                pointC_XCoordinate, pointC_YCoordinate);
-        }
-        
-        public void ChangeSize(decimal pointA_XCoordinate, decimal pointA_YCoordinate, 
-            decimal pointB_XCoordinate, decimal pointB_YCoordinate, decimal pointC_XCoordinate, 
-            decimal pointC_YCoordinate)
-        {
-            SetValues(pointA_XCoordinate, pointA_YCoordinate, pointB_XCoordinate, pointB_YCoordinate,
-                pointC_XCoordinate, pointC_YCoordinate);
+            SetValues(pointA, pointB, pointC);
         }
 
-        private void SetValues(decimal pointA_XCoordinate, decimal pointA_YCoordinate,
-            decimal pointB_XCoordinate, decimal pointB_YCoordinate, decimal pointC_XCoordinate,
-            decimal pointC_YCoordinate)
+        public PointF PointA { get; private set; }
+
+        public PointF PointB { get; private set; }
+
+        public PointF PointC { get; private set; }
+
+        public void ChangeSize(PointF pointA, PointF pointB, PointF pointC)
         {
-            this.pointA_XCoordinate = pointA_XCoordinate;
-            this.pointA_YCoordinate = pointA_YCoordinate;
-            this.pointB_XCoordinate = pointB_XCoordinate;
-            this.pointB_YCoordinate = pointB_YCoordinate;
-            this.pointC_XCoordinate = pointC_XCoordinate;
-            this.pointC_YCoordinate = pointC_YCoordinate;
+            SetValues(pointA, pointB, pointC);
         }
 
-        public override void Draw()
+        private void SetValues(PointF pointA, PointF pointB, PointF pointC)
         {
-            base.Draw(); // TODO:
+            this.PointA = pointA;
+            this.PointB = pointB;
+            this.PointC = pointC;
+        }
+
+        public override void Draw(Graphics graphics)
+        {
+            Brush brush = new SolidBrush(this.color);
+            
+            graphics.FillPolygon(brush, new PointF[] { this.PointA, this.PointB, this.PointC });
         }
 
         /// <summary>
@@ -53,23 +45,19 @@ namespace ShapeMaker.Models
         /// <param name="downOffset">
         ///     Positive value will move the figure to the down and negative value will move the figure to the up.
         /// </param>
-        public override void Move(decimal rightOffset, decimal downOffset)
+        public override void Move(float rightOffset, float downOffset)
         {
-            this.pointA_XCoordinate += rightOffset;
-            this.pointB_XCoordinate += rightOffset;
-            this.pointC_XCoordinate += rightOffset;
-
-            this.pointA_YCoordinate += downOffset;
-            this.pointB_YCoordinate += downOffset;
-            this.pointC_YCoordinate += downOffset;
+            this.PointA = new PointF(this.PointA.X + rightOffset, this.PointA.Y + downOffset);
+            this.PointB = new PointF(this.PointB.X + rightOffset, this.PointB.Y + downOffset);
+            this.PointC = new PointF(this.PointC.X + rightOffset, this.PointC.Y + downOffset);
         }
 
-        public override decimal CalculateArea()
+        public override float CalculateArea()
         {
-            decimal area = Math.Abs(
-                (this.pointA_XCoordinate * (this.pointB_YCoordinate - this.pointC_YCoordinate) +
-                 this.pointB_XCoordinate * (this.pointC_YCoordinate - this.pointA_YCoordinate) +
-                 this.pointC_XCoordinate * (this.pointA_YCoordinate - this.pointB_YCoordinate)) / 2);
+            float area = Math.Abs(
+                (this.PointA.X * (this.PointB.Y - this.PointC.Y) +
+                 this.PointB.X * (this.PointC.Y - this.PointA.Y) +
+                 this.PointC.X * (this.PointA.Y - this.PointB.Y)) / 2);
 
             return area;
         }

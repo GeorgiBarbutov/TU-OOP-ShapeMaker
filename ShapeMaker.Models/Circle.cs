@@ -1,36 +1,36 @@
-﻿using System;
+﻿using ShapeMaker.Models.Contracts;
+using System;
+using System.Drawing;
 
 namespace ShapeMaker.Models
 {
-    public class Circle : Shape
+    public class Circle : Shape, ICircle
     {
-        private decimal center_XCoordinate;
-        private decimal center_YCoordinate;
-        private decimal radius_Length;
-
-        public Circle(decimal center_XCoordinate, decimal center_YCoordinate,
-            decimal radius_Length, ConsoleColor color) : base(color)
+        public Circle(PointF center, float radius, Color color) : base(color)
         {
-            SetValues(center_XCoordinate, center_YCoordinate, radius_Length);
+            SetValues(center, radius);
         }
 
-        public void ChangeSize(decimal center_XCoordinate, decimal center_YCoordinate,
-           decimal radius_Length)
+        public PointF Center { get; private set; }
+
+        public float Radius { get; private set; }
+
+        public void ChangeSize(PointF center, float radius)
         {
-            SetValues(center_XCoordinate, center_YCoordinate, radius_Length);
+            SetValues(center, radius);
         }
 
-        private void SetValues(decimal center_XCoordinate, decimal center_YCoordinate,
-           decimal radius_Length)
+        private void SetValues(PointF center, float radius)
         {
-            this.center_XCoordinate = center_XCoordinate;
-            this.center_YCoordinate = center_YCoordinate;
-            this.radius_Length = radius_Length;
+            this.Center = center;
+            this.Radius = radius;
         }
 
-        public override void Draw()
+        public override void Draw(Graphics graphics)
         {
-            base.Draw(); // TODO:
+            Brush brush = new SolidBrush(this.color);
+
+            graphics.FillEllipse(brush, this.Center.X, this.Center.Y, this.Radius, this.Radius);
         }
 
         /// <summary>
@@ -42,16 +42,14 @@ namespace ShapeMaker.Models
         /// <param name="downOffset">
         ///     Positive value will move the figure to the down and negative value will move the figure to the up.
         /// </param>
-        public override void Move(decimal rightOffset, decimal downOffset)
+        public override void Move(float rightOffset, float downOffset)
         {
-            this.center_XCoordinate += rightOffset;
-
-            this.center_YCoordinate += downOffset;
+            this.Center = new PointF(this.Center.X + rightOffset, this.Center.Y + downOffset);
         }
 
-        public override decimal CalculateArea()
+        public override float CalculateArea()
         {
-            decimal area = (decimal)(Math.PI * (double)this.radius_Length * (double)this.radius_Length);
+            float area = (float)Math.PI * this.Radius * this.Radius;
 
             return area;
         }

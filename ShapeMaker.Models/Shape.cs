@@ -1,30 +1,30 @@
 ﻿using ShapeMaker.Models.Contracts;
-using System;
+using System.Drawing;
 
 namespace ShapeMaker.Models
 {
     public abstract class Shape : IShape
     {
-        protected ConsoleColor color;
-
-        public Shape(ConsoleColor color)
+        protected Color color;
+        
+        public Shape(Color color)
         {
             this.color = color;
         }
-        
-        public void ChangeColor(ConsoleColor newColor)
+
+        public abstract float CalculateArea();
+
+        public virtual void Draw(Graphics graphics)
+        {
+        }
+
+        public virtual void Move(float rightOffset, float downOffset)
+        {
+        }
+
+        public void ChangeColor(Color newColor)
         {
             this.color = newColor;
-        }
-
-        public abstract decimal CalculateArea();
-
-        public virtual void Draw()
-        {
-        }
-
-        public virtual void Move(decimal rightOffset, decimal downOffset)
-        {
         }
     }
 }

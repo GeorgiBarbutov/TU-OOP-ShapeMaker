@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Drawing;
 
 namespace ShapeMaker.Models.Contracts
 {
     public interface IShape
     {
-        void Draw();
+        void Draw(Graphics graphics);
 
-        decimal CalculateArea();
+        float CalculateArea();
 
-        void Move(decimal rightOffset, decimal downOffset);
+        void Move(float rightOffset, float downOffset);
 
-        void ChangeColor(ConsoleColor newColor);
+        void ChangeColor(Color newColor);
     }
 }

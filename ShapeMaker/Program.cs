@@ -17,23 +17,23 @@ namespace ShapeMaker
         static void Main()
         {
             //Polymorphysm demo
-            IShape triangle = new Triangle(1, 1, 3, 3, 6, 6, ConsoleColor.Blue);
-            IShape rectangle = new Rectangle(1, 1, 3, 3, 6, 6, -7, -7, ConsoleColor.Blue);
-            IShape circle = new Circle(0, 0, 5, ConsoleColor.DarkBlue);
+            //IShape triangle = new Triangle(1, 1, 3, 3, 6, 6, ConsoleColor.Blue);
+            //IShape rectangle = new Rectangle(1, 1, 3, 3, 6, 6, -7, -7, ConsoleColor.Blue);
+            //IShape circle = new Circle(0, 0, 5, ConsoleColor.DarkBlue);
 
-            IList<IShape> shapes = new List<IShape>
-            {
-                triangle,
-                rectangle,
-                circle
-            };
+            //IList<IShape> shapes = new List<IShape>
+            //{
+            //    triangle,
+            //    rectangle,
+            //    circle
+            //};
 
-            decimal area = shapes[0].CalculateArea();
+            //decimal area = shapes[0].CalculateArea();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Scene scene = new Scene(shapes);
+            Scene scene = new Scene();
 
             Application.Run(scene);
         }
