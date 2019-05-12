@@ -1,8 +1,4 @@
-﻿using ShapeMaker.Models;
-using ShapeMaker.Models.Contracts;
-using System.Collections.Generic;
-
-namespace ShapeMaker
+﻿namespace ShapeMaker
 {
     partial class Scene
     {
@@ -46,7 +42,7 @@ namespace ShapeMaker
             this.canvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.canvas.Location = new System.Drawing.Point(12, 37);
             this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(691, 291);
+            this.canvas.Size = new System.Drawing.Size(691, 388);
             this.canvas.TabIndex = 0;
             // 
             // lableForCanvas
@@ -62,16 +58,17 @@ namespace ShapeMaker
             // 
             // addShapeButton
             // 
-            this.addShapeButton.Location = new System.Drawing.Point(12, 335);
+            this.addShapeButton.Location = new System.Drawing.Point(12, 431);
             this.addShapeButton.Name = "addShapeButton";
             this.addShapeButton.Size = new System.Drawing.Size(168, 40);
             this.addShapeButton.TabIndex = 2;
             this.addShapeButton.Text = "Add Shape";
             this.addShapeButton.UseVisualStyleBackColor = true;
+            this.addShapeButton.Click += new System.EventHandler(this.addShapeButton_Click);
             // 
             // removeShapeButton
             // 
-            this.removeShapeButton.Location = new System.Drawing.Point(186, 335);
+            this.removeShapeButton.Location = new System.Drawing.Point(186, 431);
             this.removeShapeButton.Name = "removeShapeButton";
             this.removeShapeButton.Size = new System.Drawing.Size(168, 40);
             this.removeShapeButton.TabIndex = 3;
@@ -80,7 +77,7 @@ namespace ShapeMaker
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(360, 335);
+            this.saveButton.Location = new System.Drawing.Point(360, 431);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(168, 40);
             this.saveButton.TabIndex = 4;
@@ -89,25 +86,25 @@ namespace ShapeMaker
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(535, 335);
+            this.loadButton.Location = new System.Drawing.Point(535, 431);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(168, 40);
             this.loadButton.TabIndex = 5;
             this.loadButton.Text = "Load From File";
             this.loadButton.UseVisualStyleBackColor = true;
             // 
-            // scene
+            // Scene
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 387);
+            this.ClientSize = new System.Drawing.Size(715, 483);
             this.Controls.Add(this.loadButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.removeShapeButton);
             this.Controls.Add(this.addShapeButton);
             this.Controls.Add(this.lableForCanvas);
             this.Controls.Add(this.canvas);
-            this.Name = "scene";
+            this.Name = "Scene";
             this.Text = "Scene";
             this.ResumeLayout(false);
             this.PerformLayout();

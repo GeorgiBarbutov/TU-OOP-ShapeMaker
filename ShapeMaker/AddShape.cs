@@ -1,5 +1,4 @@
-﻿using ShapeMaker.Models.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,20 +10,18 @@ using System.Windows.Forms;
 
 namespace ShapeMaker
 {
-    public partial class Scene : Form
+    public partial class AddShape : Form
     {
-        private IList<IShape> shapes;
-
-        public Scene()
+        public AddShape()
         {
             InitializeComponent();
         }
 
-        private void addShapeButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AddShape addShapeForm = new AddShape();
-            addShapeForm.ShowDialog();
+            Scene sceneForm = new Scene();
+            sceneForm.ShowDialog();
         }
     }
 }
