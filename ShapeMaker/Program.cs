@@ -30,10 +30,13 @@ namespace ShapeMaker
 
             //decimal area = shapes[0].CalculateArea();
 
+            List<IShape> list = new List<IShape>();
+            ShapeFactory shapeFactory = new ShapeFactory();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Scene scene = new Scene();
+            Scene scene = new Scene(list, shapeFactory);
 
             Application.Run(scene);
         }

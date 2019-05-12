@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.TriangleRadioButton = new System.Windows.Forms.RadioButton();
-            this.RectangleButton = new System.Windows.Forms.RadioButton();
+            this.RectangleRadioButton = new System.Windows.Forms.RadioButton();
             this.CircleRadioButton = new System.Windows.Forms.RadioButton();
             this.PointAXCoordinateLabel = new System.Windows.Forms.Label();
             this.PointAXCoordinateNumber = new System.Windows.Forms.NumericUpDown();
@@ -52,7 +52,7 @@
             this.WidthNumber = new System.Windows.Forms.NumericUpDown();
             this.WidthLabel = new System.Windows.Forms.Label();
             this.HeightNumber = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
+            this.HeightLabel = new System.Windows.Forms.Label();
             this.CenterXLabel = new System.Windows.Forms.Label();
             this.CenterXNumber = new System.Windows.Forms.NumericUpDown();
             this.CenterYNumber = new System.Windows.Forms.NumericUpDown();
@@ -61,6 +61,9 @@
             this.RadiusLabel = new System.Windows.Forms.Label();
             this.AddShapeButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.ColorLabel = new System.Windows.Forms.Label();
+            this.ShapeColorSelected = new System.Windows.Forms.PictureBox();
+            this.SelectColorButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PointAXCoordinateNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PointAYCoordinateNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PointBYCoordinateNumber)).BeginInit();
@@ -74,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.CenterXNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CenterYNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RadiusNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ShapeColorSelected)).BeginInit();
             this.SuspendLayout();
             // 
             // TriangleRadioButton
@@ -86,17 +90,19 @@
             this.TriangleRadioButton.TabStop = true;
             this.TriangleRadioButton.Text = "Triangle";
             this.TriangleRadioButton.UseVisualStyleBackColor = true;
+            this.TriangleRadioButton.CheckedChanged += new System.EventHandler(this.TriangleRadioButton_CheckedChanged);
             // 
-            // RectangleButton
+            // RectangleRadioButton
             // 
-            this.RectangleButton.AutoSize = true;
-            this.RectangleButton.Location = new System.Drawing.Point(312, 59);
-            this.RectangleButton.Name = "RectangleButton";
-            this.RectangleButton.Size = new System.Drawing.Size(74, 17);
-            this.RectangleButton.TabIndex = 1;
-            this.RectangleButton.TabStop = true;
-            this.RectangleButton.Text = "Rectangle";
-            this.RectangleButton.UseVisualStyleBackColor = true;
+            this.RectangleRadioButton.AutoSize = true;
+            this.RectangleRadioButton.Location = new System.Drawing.Point(312, 59);
+            this.RectangleRadioButton.Name = "RectangleRadioButton";
+            this.RectangleRadioButton.Size = new System.Drawing.Size(74, 17);
+            this.RectangleRadioButton.TabIndex = 1;
+            this.RectangleRadioButton.TabStop = true;
+            this.RectangleRadioButton.Text = "Rectangle";
+            this.RectangleRadioButton.UseVisualStyleBackColor = true;
+            this.RectangleRadioButton.CheckedChanged += new System.EventHandler(this.RectangleButton_CheckedChanged);
             // 
             // CircleRadioButton
             // 
@@ -108,6 +114,7 @@
             this.CircleRadioButton.TabStop = true;
             this.CircleRadioButton.Text = "Circle";
             this.CircleRadioButton.UseVisualStyleBackColor = true;
+            this.CircleRadioButton.CheckedChanged += new System.EventHandler(this.CircleRadioButton_CheckedChanged);
             // 
             // PointAXCoordinateLabel
             // 
@@ -122,7 +129,7 @@
             // 
             this.PointAXCoordinateNumber.Location = new System.Drawing.Point(126, 232);
             this.PointAXCoordinateNumber.Maximum = new decimal(new int[] {
-            730,
+            690,
             0,
             0,
             0});
@@ -165,7 +172,7 @@
             // 
             this.PointAYCoordinateNumber.Location = new System.Drawing.Point(126, 272);
             this.PointAYCoordinateNumber.Maximum = new decimal(new int[] {
-            520,
+            380,
             0,
             0,
             0});
@@ -178,7 +185,7 @@
             // 
             this.PointBYCoordinateNumber.Location = new System.Drawing.Point(353, 272);
             this.PointBYCoordinateNumber.Maximum = new decimal(new int[] {
-            520,
+            380,
             0,
             0,
             0});
@@ -200,7 +207,7 @@
             // 
             this.PointBXCoordinateNumber.Location = new System.Drawing.Point(353, 232);
             this.PointBXCoordinateNumber.Maximum = new decimal(new int[] {
-            730,
+            690,
             0,
             0,
             0});
@@ -222,7 +229,7 @@
             // 
             this.PointCYCoordinateNumber.Location = new System.Drawing.Point(583, 272);
             this.PointCYCoordinateNumber.Maximum = new decimal(new int[] {
-            520,
+            380,
             0,
             0,
             0});
@@ -244,7 +251,7 @@
             // 
             this.PointCXCoordinateNumber.Location = new System.Drawing.Point(583, 232);
             this.PointCXCoordinateNumber.Maximum = new decimal(new int[] {
-            730,
+            690,
             0,
             0,
             0});
@@ -266,7 +273,7 @@
             // 
             this.PointXNumber.Location = new System.Drawing.Point(226, 232);
             this.PointXNumber.Maximum = new decimal(new int[] {
-            730,
+            690,
             0,
             0,
             0});
@@ -290,7 +297,7 @@
             // 
             this.PointYNumber.Location = new System.Drawing.Point(457, 232);
             this.PointYNumber.Maximum = new decimal(new int[] {
-            520,
+            380,
             0,
             0,
             0});
@@ -314,7 +321,7 @@
             // 
             this.WidthNumber.Location = new System.Drawing.Point(226, 272);
             this.WidthNumber.Maximum = new decimal(new int[] {
-            730,
+            690,
             0,
             0,
             0});
@@ -338,7 +345,7 @@
             // 
             this.HeightNumber.Location = new System.Drawing.Point(457, 272);
             this.HeightNumber.Maximum = new decimal(new int[] {
-            520,
+            380,
             0,
             0,
             0});
@@ -348,31 +355,31 @@
             this.HeightNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.HeightNumber.Visible = false;
             // 
-            // label1
+            // HeightLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(409, 274);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Height:";
-            this.label1.Visible = false;
+            this.HeightLabel.AutoSize = true;
+            this.HeightLabel.Location = new System.Drawing.Point(409, 274);
+            this.HeightLabel.Name = "HeightLabel";
+            this.HeightLabel.Size = new System.Drawing.Size(41, 13);
+            this.HeightLabel.TabIndex = 23;
+            this.HeightLabel.Text = "Height:";
+            this.HeightLabel.Visible = false;
             // 
             // CenterXLabel
             // 
             this.CenterXLabel.AutoSize = true;
             this.CenterXLabel.Location = new System.Drawing.Point(68, 255);
             this.CenterXLabel.Name = "CenterXLabel";
-            this.CenterXLabel.Size = new System.Drawing.Size(46, 13);
+            this.CenterXLabel.Size = new System.Drawing.Size(49, 13);
             this.CenterXLabel.TabIndex = 25;
-            this.CenterXLabel.Text = "Cenet x:";
+            this.CenterXLabel.Text = "Center x:";
             this.CenterXLabel.Visible = false;
             // 
             // CenterXNumber
             // 
             this.CenterXNumber.Location = new System.Drawing.Point(120, 253);
             this.CenterXNumber.Maximum = new decimal(new int[] {
-            730,
+            690,
             0,
             0,
             0});
@@ -386,7 +393,7 @@
             // 
             this.CenterYNumber.Location = new System.Drawing.Point(347, 253);
             this.CenterYNumber.Maximum = new decimal(new int[] {
-            520,
+            380,
             0,
             0,
             0});
@@ -401,16 +408,16 @@
             this.CenterYLabel.AutoSize = true;
             this.CenterYLabel.Location = new System.Drawing.Point(295, 255);
             this.CenterYLabel.Name = "CenterYLabel";
-            this.CenterYLabel.Size = new System.Drawing.Size(46, 13);
+            this.CenterYLabel.Size = new System.Drawing.Size(49, 13);
             this.CenterYLabel.TabIndex = 27;
-            this.CenterYLabel.Text = "Cenet y:";
+            this.CenterYLabel.Text = "Center y:";
             this.CenterYLabel.Visible = false;
             // 
             // RadiusNumber
             // 
             this.RadiusNumber.Location = new System.Drawing.Point(574, 253);
             this.RadiusNumber.Maximum = new decimal(new int[] {
-            520,
+            380,
             0,
             0,
             0});
@@ -438,6 +445,7 @@
             this.AddShapeButton.TabIndex = 31;
             this.AddShapeButton.Text = "Add Shape";
             this.AddShapeButton.UseVisualStyleBackColor = true;
+            this.AddShapeButton.Click += new System.EventHandler(this.AddShapeButton_Click);
             // 
             // CancelButton
             // 
@@ -449,11 +457,41 @@
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // ColorLabel
+            // 
+            this.ColorLabel.AutoSize = true;
+            this.ColorLabel.Location = new System.Drawing.Point(313, 312);
+            this.ColorLabel.Name = "ColorLabel";
+            this.ColorLabel.Size = new System.Drawing.Size(34, 13);
+            this.ColorLabel.TabIndex = 33;
+            this.ColorLabel.Text = "Color:";
+            // 
+            // ShapeColorSelected
+            // 
+            this.ShapeColorSelected.Location = new System.Drawing.Point(364, 312);
+            this.ShapeColorSelected.Name = "ShapeColorSelected";
+            this.ShapeColorSelected.Size = new System.Drawing.Size(22, 13);
+            this.ShapeColorSelected.TabIndex = 34;
+            this.ShapeColorSelected.TabStop = false;
+            // 
+            // SelectColorButton
+            // 
+            this.SelectColorButton.Location = new System.Drawing.Point(312, 331);
+            this.SelectColorButton.Name = "SelectColorButton";
+            this.SelectColorButton.Size = new System.Drawing.Size(81, 25);
+            this.SelectColorButton.TabIndex = 35;
+            this.SelectColorButton.Text = "Select Color";
+            this.SelectColorButton.UseVisualStyleBackColor = true;
+            this.SelectColorButton.Click += new System.EventHandler(this.SelectColorButton_Click);
+            // 
             // AddShape
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 483);
+            this.Controls.Add(this.SelectColorButton);
+            this.Controls.Add(this.ShapeColorSelected);
+            this.Controls.Add(this.ColorLabel);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddShapeButton);
             this.Controls.Add(this.RadiusNumber);
@@ -463,7 +501,7 @@
             this.Controls.Add(this.CenterXNumber);
             this.Controls.Add(this.CenterXLabel);
             this.Controls.Add(this.HeightNumber);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.HeightLabel);
             this.Controls.Add(this.WidthNumber);
             this.Controls.Add(this.WidthLabel);
             this.Controls.Add(this.PointYNumber);
@@ -485,7 +523,7 @@
             this.Controls.Add(this.PointAXCoordinateNumber);
             this.Controls.Add(this.PointAXCoordinateLabel);
             this.Controls.Add(this.CircleRadioButton);
-            this.Controls.Add(this.RectangleButton);
+            this.Controls.Add(this.RectangleRadioButton);
             this.Controls.Add(this.TriangleRadioButton);
             this.Name = "AddShape";
             this.Text = "AddShape";
@@ -502,6 +540,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.CenterXNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CenterYNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RadiusNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ShapeColorSelected)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -510,7 +549,7 @@
         #endregion
 
         private System.Windows.Forms.RadioButton TriangleRadioButton;
-        private System.Windows.Forms.RadioButton RectangleButton;
+        private System.Windows.Forms.RadioButton RectangleRadioButton;
         private System.Windows.Forms.RadioButton CircleRadioButton;
         private System.Windows.Forms.Label PointAXCoordinateLabel;
         private System.Windows.Forms.NumericUpDown PointAXCoordinateNumber;
@@ -533,7 +572,7 @@
         private System.Windows.Forms.NumericUpDown WidthNumber;
         private System.Windows.Forms.Label WidthLabel;
         private System.Windows.Forms.NumericUpDown HeightNumber;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label HeightLabel;
         private System.Windows.Forms.Label CenterXLabel;
         private System.Windows.Forms.NumericUpDown CenterXNumber;
         private System.Windows.Forms.NumericUpDown CenterYNumber;
@@ -542,5 +581,8 @@
         private System.Windows.Forms.Label RadiusLabel;
         private System.Windows.Forms.Button AddShapeButton;
         private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Label ColorLabel;
+        private System.Windows.Forms.PictureBox ShapeColorSelected;
+        private System.Windows.Forms.Button SelectColorButton;
     }
 }
