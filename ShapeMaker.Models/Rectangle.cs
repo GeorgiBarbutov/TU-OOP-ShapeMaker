@@ -45,16 +45,7 @@ namespace ShapeMaker.Models
 
             pen.Dispose();
         }
-
-        /// <summary>
-        ///     Changes the coordinates by a specific offset.
-        /// </summary>
-        /// <param name="rightOffset">
-        ///     Positive value will move the figure to the right and negative value will move the figure to the left.
-        /// </param>
-        /// <param name="downOffset">
-        ///     Positive value will move the figure to the down and negative value will move the figure to the up.
-        /// </param>
+        
         public override void Move(float rightOffset, float downOffset)
         {
             this.Point = new PointF(this.Point.X + rightOffset, this.Point.Y + downOffset);

@@ -405,7 +405,7 @@
             // 
             this.FigureLabel.AutoSize = true;
             this.FigureLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FigureLabel.Location = new System.Drawing.Point(362, 34);
+            this.FigureLabel.Location = new System.Drawing.Point(371, 36);
             this.FigureLabel.Name = "FigureLabel";
             this.FigureLabel.Size = new System.Drawing.Size(54, 20);
             this.FigureLabel.TabIndex = 41;

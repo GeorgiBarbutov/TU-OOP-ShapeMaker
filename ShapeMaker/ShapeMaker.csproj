@@ -60,12 +60,6 @@
     <Compile Include="EditShape.Designer.cs">
       <DependentUpon>EditShape.cs</DependentUpon>
     </Compile>
-    <Compile Include="SaveTo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SaveTo.Designer.cs">
-      <DependentUpon>SaveTo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Scene.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,9 +84,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SaveTo.resx">
-      <DependentUpon>SaveTo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Scene.resx">
       <DependentUpon>Scene.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +103,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ShapeMaker.IO\ShapeMaker.IO.csproj">
+      <Project>{CBFD1A2E-2CD1-43E0-B68E-EA77518D2C9B}</Project>
+      <Name>ShapeMaker.IO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShapeMaker.Models\ShapeMaker.Models.csproj">
       <Project>{B8876C38-72DF-4270-B3A7-B102C944E69B}</Project>
       <Name>ShapeMaker.Models</Name>

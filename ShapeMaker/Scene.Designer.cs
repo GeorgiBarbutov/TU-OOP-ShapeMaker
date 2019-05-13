@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.canvas = new System.Windows.Forms.Panel();
-            this.lableForCanvas = new System.Windows.Forms.Label();
+            this.Canvas = new System.Windows.Forms.Panel();
+            this.LableForCanvas = new System.Windows.Forms.Label();
             this.addShapeButton = new System.Windows.Forms.Button();
             this.removeShapeButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.loadButton = new System.Windows.Forms.Button();
+            this.SaveToFileButton = new System.Windows.Forms.Button();
+            this.LoadFromFileButton = new System.Windows.Forms.Button();
             this.NewShapeAreaLabel = new System.Windows.Forms.Label();
             this.NewShapeAreaNumber = new System.Windows.Forms.Label();
             this.TotalAreaTakenNumber = new System.Windows.Forms.Label();
@@ -41,27 +41,28 @@
             this.EditShapeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // canvas
+            // Canvas
             // 
-            this.canvas.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.canvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.canvas.Location = new System.Drawing.Point(12, 37);
-            this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(691, 388);
-            this.canvas.TabIndex = 0;
-            this.canvas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseClick);
-            this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
+            this.Canvas.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Canvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Canvas.Location = new System.Drawing.Point(12, 37);
+            this.Canvas.Name = "Canvas";
+            this.Canvas.Size = new System.Drawing.Size(691, 388);
+            this.Canvas.TabIndex = 0;
+            this.Canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseDown);
+            this.Canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseMove);
+            this.Canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseUp);
             // 
-            // lableForCanvas
+            // LableForCanvas
             // 
-            this.lableForCanvas.AutoSize = true;
-            this.lableForCanvas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lableForCanvas.Location = new System.Drawing.Point(322, 10);
-            this.lableForCanvas.Name = "lableForCanvas";
-            this.lableForCanvas.Size = new System.Drawing.Size(78, 24);
-            this.lableForCanvas.TabIndex = 1;
-            this.lableForCanvas.Text = "Canvas";
-            this.lableForCanvas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LableForCanvas.AutoSize = true;
+            this.LableForCanvas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LableForCanvas.Location = new System.Drawing.Point(316, 10);
+            this.LableForCanvas.Name = "LableForCanvas";
+            this.LableForCanvas.Size = new System.Drawing.Size(78, 24);
+            this.LableForCanvas.TabIndex = 1;
+            this.LableForCanvas.Text = "Canvas";
+            this.LableForCanvas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // addShapeButton
             // 
@@ -71,7 +72,7 @@
             this.addShapeButton.TabIndex = 2;
             this.addShapeButton.Text = "Add Shape";
             this.addShapeButton.UseVisualStyleBackColor = true;
-            this.addShapeButton.Click += new System.EventHandler(this.addShapeButton_Click);
+            this.addShapeButton.Click += new System.EventHandler(this.AddShapeButton_Click);
             // 
             // removeShapeButton
             // 
@@ -81,25 +82,26 @@
             this.removeShapeButton.TabIndex = 3;
             this.removeShapeButton.Text = "Remove Shape";
             this.removeShapeButton.UseVisualStyleBackColor = true;
-            this.removeShapeButton.Click += new System.EventHandler(this.removeShapeButton_Click);
+            this.removeShapeButton.Click += new System.EventHandler(this.RemoveShapeButton_Click);
             // 
-            // saveButton
+            // SaveToFileButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(430, 431);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(133, 40);
-            this.saveButton.TabIndex = 4;
-            this.saveButton.Text = "Save To File";
-            this.saveButton.UseVisualStyleBackColor = true;
+            this.SaveToFileButton.Location = new System.Drawing.Point(430, 431);
+            this.SaveToFileButton.Name = "SaveToFileButton";
+            this.SaveToFileButton.Size = new System.Drawing.Size(133, 40);
+            this.SaveToFileButton.TabIndex = 4;
+            this.SaveToFileButton.Text = "Save To File";
+            this.SaveToFileButton.UseVisualStyleBackColor = true;
+            this.SaveToFileButton.Click += new System.EventHandler(this.SaveToFileButton_Click);
             // 
-            // loadButton
+            // LoadFromFileButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(569, 431);
-            this.loadButton.Name = "loadButton";
-            this.loadButton.Size = new System.Drawing.Size(134, 40);
-            this.loadButton.TabIndex = 5;
-            this.loadButton.Text = "Load From File";
-            this.loadButton.UseVisualStyleBackColor = true;
+            this.LoadFromFileButton.Location = new System.Drawing.Point(569, 431);
+            this.LoadFromFileButton.Name = "LoadFromFileButton";
+            this.LoadFromFileButton.Size = new System.Drawing.Size(134, 40);
+            this.LoadFromFileButton.TabIndex = 5;
+            this.LoadFromFileButton.Text = "Load From File";
+            this.LoadFromFileButton.UseVisualStyleBackColor = true;
             // 
             // NewShapeAreaLabel
             // 
@@ -157,12 +159,12 @@
             this.Controls.Add(this.TotalAreaTakenLablel);
             this.Controls.Add(this.NewShapeAreaNumber);
             this.Controls.Add(this.NewShapeAreaLabel);
-            this.Controls.Add(this.loadButton);
-            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.LoadFromFileButton);
+            this.Controls.Add(this.SaveToFileButton);
             this.Controls.Add(this.removeShapeButton);
             this.Controls.Add(this.addShapeButton);
-            this.Controls.Add(this.lableForCanvas);
-            this.Controls.Add(this.canvas);
+            this.Controls.Add(this.LableForCanvas);
+            this.Controls.Add(this.Canvas);
             this.Name = "Scene";
             this.Text = "Scene";
             this.ResumeLayout(false);
@@ -172,12 +174,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel canvas;
-        private System.Windows.Forms.Label lableForCanvas;
+        private System.Windows.Forms.Panel Canvas;
+        private System.Windows.Forms.Label LableForCanvas;
         private System.Windows.Forms.Button addShapeButton;
         private System.Windows.Forms.Button removeShapeButton;
-        private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button loadButton;
+        private System.Windows.Forms.Button SaveToFileButton;
+        private System.Windows.Forms.Button LoadFromFileButton;
         private System.Windows.Forms.Label NewShapeAreaLabel;
         private System.Windows.Forms.Label NewShapeAreaNumber;
         private System.Windows.Forms.Label TotalAreaTakenNumber;

@@ -119,7 +119,7 @@
             // PointAXCoordinateLabel
             // 
             this.PointAXCoordinateLabel.AutoSize = true;
-            this.PointAXCoordinateLabel.Location = new System.Drawing.Point(68, 234);
+            this.PointAXCoordinateLabel.Location = new System.Drawing.Point(68, 166);
             this.PointAXCoordinateLabel.Name = "PointAXCoordinateLabel";
             this.PointAXCoordinateLabel.Size = new System.Drawing.Size(52, 13);
             this.PointAXCoordinateLabel.TabIndex = 3;
@@ -127,7 +127,7 @@
             // 
             // PointAXCoordinateNumber
             // 
-            this.PointAXCoordinateNumber.Location = new System.Drawing.Point(126, 232);
+            this.PointAXCoordinateNumber.Location = new System.Drawing.Point(126, 164);
             this.PointAXCoordinateNumber.Maximum = new decimal(new int[] {
             690,
             0,
@@ -153,7 +153,7 @@
             // 
             this.PropertiesLabel.AutoSize = true;
             this.PropertiesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PropertiesLabel.Location = new System.Drawing.Point(308, 178);
+            this.PropertiesLabel.Location = new System.Drawing.Point(308, 110);
             this.PropertiesLabel.Name = "PropertiesLabel";
             this.PropertiesLabel.Size = new System.Drawing.Size(81, 20);
             this.PropertiesLabel.TabIndex = 6;
@@ -162,7 +162,7 @@
             // PointAYCoordinateLabel
             // 
             this.PointAYCoordinateLabel.AutoSize = true;
-            this.PointAYCoordinateLabel.Location = new System.Drawing.Point(68, 274);
+            this.PointAYCoordinateLabel.Location = new System.Drawing.Point(68, 206);
             this.PointAYCoordinateLabel.Name = "PointAYCoordinateLabel";
             this.PointAYCoordinateLabel.Size = new System.Drawing.Size(52, 13);
             this.PointAYCoordinateLabel.TabIndex = 7;
@@ -170,7 +170,7 @@
             // 
             // PointAYCoordinateNumber
             // 
-            this.PointAYCoordinateNumber.Location = new System.Drawing.Point(126, 272);
+            this.PointAYCoordinateNumber.Location = new System.Drawing.Point(126, 204);
             this.PointAYCoordinateNumber.Maximum = new decimal(new int[] {
             380,
             0,
@@ -183,7 +183,7 @@
             // 
             // PointBYCoordinateNumber
             // 
-            this.PointBYCoordinateNumber.Location = new System.Drawing.Point(353, 272);
+            this.PointBYCoordinateNumber.Location = new System.Drawing.Point(353, 204);
             this.PointBYCoordinateNumber.Maximum = new decimal(new int[] {
             380,
             0,
@@ -197,7 +197,7 @@
             // PointBYCoordinateLabel
             // 
             this.PointBYCoordinateLabel.AutoSize = true;
-            this.PointBYCoordinateLabel.Location = new System.Drawing.Point(295, 274);
+            this.PointBYCoordinateLabel.Location = new System.Drawing.Point(295, 206);
             this.PointBYCoordinateLabel.Name = "PointBYCoordinateLabel";
             this.PointBYCoordinateLabel.Size = new System.Drawing.Size(52, 13);
             this.PointBYCoordinateLabel.TabIndex = 11;
@@ -205,7 +205,7 @@
             // 
             // PointBXCoordinateNumber
             // 
-            this.PointBXCoordinateNumber.Location = new System.Drawing.Point(353, 232);
+            this.PointBXCoordinateNumber.Location = new System.Drawing.Point(353, 164);
             this.PointBXCoordinateNumber.Maximum = new decimal(new int[] {
             690,
             0,
@@ -219,7 +219,7 @@
             // PointBXCoordinateLabel
             // 
             this.PointBXCoordinateLabel.AutoSize = true;
-            this.PointBXCoordinateLabel.Location = new System.Drawing.Point(295, 234);
+            this.PointBXCoordinateLabel.Location = new System.Drawing.Point(295, 166);
             this.PointBXCoordinateLabel.Name = "PointBXCoordinateLabel";
             this.PointBXCoordinateLabel.Size = new System.Drawing.Size(52, 13);
             this.PointBXCoordinateLabel.TabIndex = 9;
@@ -227,7 +227,7 @@
             // 
             // PointCYCoordinateNumber
             // 
-            this.PointCYCoordinateNumber.Location = new System.Drawing.Point(583, 272);
+            this.PointCYCoordinateNumber.Location = new System.Drawing.Point(583, 204);
             this.PointCYCoordinateNumber.Maximum = new decimal(new int[] {
             380,
             0,
@@ -241,7 +241,7 @@
             // PointCYCoordinateLabel
             // 
             this.PointCYCoordinateLabel.AutoSize = true;
-            this.PointCYCoordinateLabel.Location = new System.Drawing.Point(525, 274);
+            this.PointCYCoordinateLabel.Location = new System.Drawing.Point(525, 206);
             this.PointCYCoordinateLabel.Name = "PointCYCoordinateLabel";
             this.PointCYCoordinateLabel.Size = new System.Drawing.Size(52, 13);
             this.PointCYCoordinateLabel.TabIndex = 15;
@@ -249,7 +249,7 @@
             // 
             // PointCXCoordinateNumber
             // 
-            this.PointCXCoordinateNumber.Location = new System.Drawing.Point(583, 232);
+            this.PointCXCoordinateNumber.Location = new System.Drawing.Point(583, 164);
             this.PointCXCoordinateNumber.Maximum = new decimal(new int[] {
             690,
             0,
@@ -263,7 +263,7 @@
             // PointCXCoordinateLabel
             // 
             this.PointCXCoordinateLabel.AutoSize = true;
-            this.PointCXCoordinateLabel.Location = new System.Drawing.Point(525, 234);
+            this.PointCXCoordinateLabel.Location = new System.Drawing.Point(525, 166);
             this.PointCXCoordinateLabel.Name = "PointCXCoordinateLabel";
             this.PointCXCoordinateLabel.Size = new System.Drawing.Size(52, 13);
             this.PointCXCoordinateLabel.TabIndex = 13;
@@ -271,7 +271,7 @@
             // 
             // PointXNumber
             // 
-            this.PointXNumber.Location = new System.Drawing.Point(226, 232);
+            this.PointXNumber.Location = new System.Drawing.Point(226, 164);
             this.PointXNumber.Maximum = new decimal(new int[] {
             690,
             0,
@@ -286,7 +286,7 @@
             // PointXLabel
             // 
             this.PointXLabel.AutoSize = true;
-            this.PointXLabel.Location = new System.Drawing.Point(182, 234);
+            this.PointXLabel.Location = new System.Drawing.Point(182, 166);
             this.PointXLabel.Name = "PointXLabel";
             this.PointXLabel.Size = new System.Drawing.Size(42, 13);
             this.PointXLabel.TabIndex = 17;
@@ -295,7 +295,7 @@
             // 
             // PointYNumber
             // 
-            this.PointYNumber.Location = new System.Drawing.Point(457, 232);
+            this.PointYNumber.Location = new System.Drawing.Point(457, 164);
             this.PointYNumber.Maximum = new decimal(new int[] {
             380,
             0,
@@ -310,7 +310,7 @@
             // PointYLabel
             // 
             this.PointYLabel.AutoSize = true;
-            this.PointYLabel.Location = new System.Drawing.Point(409, 234);
+            this.PointYLabel.Location = new System.Drawing.Point(409, 166);
             this.PointYLabel.Name = "PointYLabel";
             this.PointYLabel.Size = new System.Drawing.Size(42, 13);
             this.PointYLabel.TabIndex = 19;
@@ -319,7 +319,7 @@
             // 
             // WidthNumber
             // 
-            this.WidthNumber.Location = new System.Drawing.Point(226, 272);
+            this.WidthNumber.Location = new System.Drawing.Point(226, 204);
             this.WidthNumber.Maximum = new decimal(new int[] {
             690,
             0,
@@ -334,7 +334,7 @@
             // WidthLabel
             // 
             this.WidthLabel.AutoSize = true;
-            this.WidthLabel.Location = new System.Drawing.Point(182, 274);
+            this.WidthLabel.Location = new System.Drawing.Point(182, 206);
             this.WidthLabel.Name = "WidthLabel";
             this.WidthLabel.Size = new System.Drawing.Size(38, 13);
             this.WidthLabel.TabIndex = 21;
@@ -343,7 +343,7 @@
             // 
             // HeightNumber
             // 
-            this.HeightNumber.Location = new System.Drawing.Point(457, 272);
+            this.HeightNumber.Location = new System.Drawing.Point(457, 204);
             this.HeightNumber.Maximum = new decimal(new int[] {
             380,
             0,
@@ -358,7 +358,7 @@
             // HeightLabel
             // 
             this.HeightLabel.AutoSize = true;
-            this.HeightLabel.Location = new System.Drawing.Point(409, 274);
+            this.HeightLabel.Location = new System.Drawing.Point(409, 206);
             this.HeightLabel.Name = "HeightLabel";
             this.HeightLabel.Size = new System.Drawing.Size(41, 13);
             this.HeightLabel.TabIndex = 23;
@@ -368,7 +368,7 @@
             // CenterXLabel
             // 
             this.CenterXLabel.AutoSize = true;
-            this.CenterXLabel.Location = new System.Drawing.Point(68, 255);
+            this.CenterXLabel.Location = new System.Drawing.Point(68, 187);
             this.CenterXLabel.Name = "CenterXLabel";
             this.CenterXLabel.Size = new System.Drawing.Size(49, 13);
             this.CenterXLabel.TabIndex = 25;
@@ -377,7 +377,7 @@
             // 
             // CenterXNumber
             // 
-            this.CenterXNumber.Location = new System.Drawing.Point(120, 253);
+            this.CenterXNumber.Location = new System.Drawing.Point(120, 185);
             this.CenterXNumber.Maximum = new decimal(new int[] {
             690,
             0,
@@ -391,7 +391,7 @@
             // 
             // CenterYNumber
             // 
-            this.CenterYNumber.Location = new System.Drawing.Point(347, 253);
+            this.CenterYNumber.Location = new System.Drawing.Point(347, 185);
             this.CenterYNumber.Maximum = new decimal(new int[] {
             380,
             0,
@@ -406,7 +406,7 @@
             // CenterYLabel
             // 
             this.CenterYLabel.AutoSize = true;
-            this.CenterYLabel.Location = new System.Drawing.Point(295, 255);
+            this.CenterYLabel.Location = new System.Drawing.Point(295, 187);
             this.CenterYLabel.Name = "CenterYLabel";
             this.CenterYLabel.Size = new System.Drawing.Size(49, 13);
             this.CenterYLabel.TabIndex = 27;
@@ -415,7 +415,7 @@
             // 
             // RadiusNumber
             // 
-            this.RadiusNumber.Location = new System.Drawing.Point(574, 253);
+            this.RadiusNumber.Location = new System.Drawing.Point(574, 185);
             this.RadiusNumber.Maximum = new decimal(new int[] {
             380,
             0,
@@ -430,7 +430,7 @@
             // RadiusLabel
             // 
             this.RadiusLabel.AutoSize = true;
-            this.RadiusLabel.Location = new System.Drawing.Point(525, 255);
+            this.RadiusLabel.Location = new System.Drawing.Point(525, 187);
             this.RadiusLabel.Name = "RadiusLabel";
             this.RadiusLabel.Size = new System.Drawing.Size(43, 13);
             this.RadiusLabel.TabIndex = 29;
@@ -439,7 +439,7 @@
             // 
             // AddShapeButton
             // 
-            this.AddShapeButton.Location = new System.Drawing.Point(126, 389);
+            this.AddShapeButton.Location = new System.Drawing.Point(126, 321);
             this.AddShapeButton.Name = "AddShapeButton";
             this.AddShapeButton.Size = new System.Drawing.Size(168, 40);
             this.AddShapeButton.TabIndex = 31;
@@ -449,7 +449,7 @@
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(442, 389);
+            this.CancelButton.Location = new System.Drawing.Point(442, 321);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(168, 40);
             this.CancelButton.TabIndex = 32;
@@ -460,7 +460,7 @@
             // ColorLabel
             // 
             this.ColorLabel.AutoSize = true;
-            this.ColorLabel.Location = new System.Drawing.Point(313, 312);
+            this.ColorLabel.Location = new System.Drawing.Point(313, 244);
             this.ColorLabel.Name = "ColorLabel";
             this.ColorLabel.Size = new System.Drawing.Size(34, 13);
             this.ColorLabel.TabIndex = 33;
@@ -468,7 +468,7 @@
             // 
             // ShapeColorSelected
             // 
-            this.ShapeColorSelected.Location = new System.Drawing.Point(364, 312);
+            this.ShapeColorSelected.Location = new System.Drawing.Point(364, 244);
             this.ShapeColorSelected.Name = "ShapeColorSelected";
             this.ShapeColorSelected.Size = new System.Drawing.Size(22, 13);
             this.ShapeColorSelected.TabIndex = 34;
@@ -476,7 +476,7 @@
             // 
             // SelectColorButton
             // 
-            this.SelectColorButton.Location = new System.Drawing.Point(312, 331);
+            this.SelectColorButton.Location = new System.Drawing.Point(312, 263);
             this.SelectColorButton.Name = "SelectColorButton";
             this.SelectColorButton.Size = new System.Drawing.Size(81, 25);
             this.SelectColorButton.TabIndex = 35;

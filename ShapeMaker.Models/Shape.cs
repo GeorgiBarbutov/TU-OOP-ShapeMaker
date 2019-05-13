@@ -19,7 +19,7 @@ namespace ShapeMaker.Models
         public virtual void Draw(Graphics graphics)
         {
         }
-
+        
         public virtual void Move(float rightOffset, float downOffset)
         {
         }
