@@ -33,6 +33,17 @@ namespace ShapeMaker.Models
             Brush brush = new SolidBrush(this.color);
 
             graphics.FillRectangle(brush, this.Point.X, this.Point.Y, this.Width, this.Height);
+
+            brush.Dispose();
+        }
+
+        public override void Outline(Graphics graphics, Color color)
+        {
+            Pen pen = new Pen(color, 2);
+
+            graphics.DrawRectangle(pen, this.Point.X, this.Point.Y, this.Width, this.Height);
+
+            pen.Dispose();
         }
 
         /// <summary>
@@ -54,6 +65,17 @@ namespace ShapeMaker.Models
             float area = this.Width * this.Height;
 
             return area;
+        }
+
+        public override bool Contains(PointF point)
+        {
+            if (point.X >= this.Point.X && point.X <= this.Point.X + this.Width && 
+                point.Y >= this.Point.Y && point.Y <= this.Point.Y + this.Height)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

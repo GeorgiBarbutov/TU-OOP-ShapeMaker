@@ -110,7 +110,7 @@
             this.Controls.Add(this.NameText);
             this.Controls.Add(this.NameLabel);
             this.Name = "SaveTo";
-            this.Text = "SaveTo";
+            this.Text = "Save To";
             this.ResumeLayout(false);
             this.PerformLayout();
 

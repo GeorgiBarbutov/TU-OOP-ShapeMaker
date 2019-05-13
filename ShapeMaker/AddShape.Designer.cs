@@ -526,7 +526,7 @@
             this.Controls.Add(this.RectangleRadioButton);
             this.Controls.Add(this.TriangleRadioButton);
             this.Name = "AddShape";
-            this.Text = "AddShape";
+            this.Text = "Add Shape";
             ((System.ComponentModel.ISupportInitialize)(this.PointAXCoordinateNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PointAYCoordinateNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PointBYCoordinateNumber)).EndInit();

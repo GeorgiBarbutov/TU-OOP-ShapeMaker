@@ -34,6 +34,17 @@ namespace ShapeMaker.Models
             Brush brush = new SolidBrush(this.color);
             
             graphics.FillPolygon(brush, new PointF[] { this.PointA, this.PointB, this.PointC });
+
+            brush.Dispose();
+        }
+
+        public override void Outline(Graphics graphics, Color color)
+        {
+            Pen pen = new Pen(color, 2);
+
+            graphics.DrawPolygon(pen, new PointF[] { this.PointA, this.PointB, this.PointC });
+
+            pen.Dispose();
         }
 
         /// <summary>
@@ -60,6 +71,27 @@ namespace ShapeMaker.Models
                  this.PointC.X * (this.PointA.Y - this.PointB.Y)) / 2);
 
             return area;
+        }
+
+        public override bool Contains(PointF point)
+        {
+            float d1, d2, d3;
+            bool has_neg, has_pos;
+
+            d1 = Sign(point, this.PointA, this.PointB);
+            d2 = Sign(point, this.PointB, this.PointC);
+            d3 = Sign(point, this.PointC, this.PointA);
+
+            has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+            has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+            return !(has_neg && has_pos);
+        }
+
+        private float Sign(PointF point1, PointF point2, PointF point3)
+        {
+            return (point1.X - point3.X) * (point2.Y - point3.Y) - 
+                (point2.X - point3.X) * (point1.Y - point3.Y);
         }
     }
 }

@@ -30,7 +30,20 @@ namespace ShapeMaker.Models
         {
             Brush brush = new SolidBrush(this.color);
 
-            graphics.FillEllipse(brush, this.Center.X, this.Center.Y, this.Radius, this.Radius);
+            graphics.FillEllipse(brush, this.Center.X - this.Radius, this.Center.Y - this.Radius, 
+                this.Radius * 2, this.Radius * 2);
+
+            brush.Dispose();
+        }
+
+        public override void Outline(Graphics graphics, Color color)
+        {
+            Pen pen = new Pen(color, 2);
+
+            graphics.DrawEllipse(pen, this.Center.X - this.Radius, this.Center.Y - this.Radius,
+                this.Radius * 2, this.Radius * 2);
+
+            pen.Dispose();
         }
 
         /// <summary>
@@ -52,6 +65,15 @@ namespace ShapeMaker.Models
             float area = (float)Math.PI * this.Radius * this.Radius;
 
             return area;
+        }
+
+        public override bool Contains(PointF point)
+        {
+            if ((point.X - this.Center.X) * (point.X - this.Center.X) +
+                (point.Y - this.Center.Y) * (point.Y - this.Center.Y) <= this.Radius * this.Radius)
+                return true;
+            else
+                return false;
         }
     }
 }

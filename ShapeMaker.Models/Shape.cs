@@ -6,7 +6,9 @@ namespace ShapeMaker.Models
     public abstract class Shape : IShape
     {
         protected Color color;
-        
+
+        public Color Color => this.color;
+
         public Shape(Color color)
         {
             this.color = color;
@@ -26,5 +28,11 @@ namespace ShapeMaker.Models
         {
             this.color = newColor;
         }
+
+        public virtual void Outline(Graphics graphics, Color color)
+        {
+        }
+
+        public abstract bool Contains(PointF point);
     }
 }
