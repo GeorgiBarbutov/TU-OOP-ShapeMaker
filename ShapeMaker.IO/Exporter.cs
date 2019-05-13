@@ -12,16 +12,18 @@ namespace ShapeMaker.IO
     {
         private IList<IShape> shapes;
 
-        public Exporter(IList<IShape> shapes)
+        public void Export(string path, IList<IShape> shapes)
         {
             this.shapes = shapes;
-        }
 
-        public void Export(string path)
-        {
             ShapesDto dtos = GetDtos();
 
-            XmlSerializer serializer = new XmlSerializer(typeof(ShapesDto), new XmlRootAttribute("users"));
+            ExportToXml(path, dtos);
+        }
+
+        private static void ExportToXml(string path, ShapesDto dtos)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(ShapesDto), new XmlRootAttribute("Shapes"));
 
             StreamWriter streamWriter = new StreamWriter(path);
 

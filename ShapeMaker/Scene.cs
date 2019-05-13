@@ -19,13 +19,17 @@ namespace ShapeMaker
         private IShape selectedFigure;
         private float mouseDownXCoordinate;
         private float mouseDownYCoordinate;
+        private IExporter exporter;
+        private IImporter importer;
 
-        public Scene(IList<IShape> shapes, IShapeFactory shapeFactory)
+        public Scene(IList<IShape> shapes, IShapeFactory shapeFactory, IExporter exporter, IImporter importer)
         {
             InitializeComponent();
 
             this.shapes = shapes;
             this.shapeFactory = shapeFactory;
+            this.exporter = exporter;
+            this.importer = importer;
         }
 
         private void AddShapeButton_Click(object sender, EventArgs e)
@@ -70,7 +74,7 @@ namespace ShapeMaker
 
             Graphics graphics = this.Canvas.CreateGraphics();
 
-            foreach (IShape shape in this.shapes)
+            foreach (IShape shape in this.shapes.Reverse())
             {
                 shape.Draw(graphics);
             }
@@ -118,6 +122,8 @@ namespace ShapeMaker
                     {
                         this.selectedFigure = shape;
 
+                        this.selectedFigure.Draw(graphics);
+
                         cursorIsOnAnyShape = true;
 
                         break;
@@ -140,6 +146,10 @@ namespace ShapeMaker
                 this.selectedFigure.Move(e.X - this.mouseDownXCoordinate, e.Y - this.mouseDownYCoordinate);
 
                 RedrawCanvas();
+
+                Graphics graphics = this.Canvas.CreateGraphics();
+
+                this.selectedFigure.Draw(graphics);
 
                 this.mouseDownXCoordinate = e.X;
                 this.mouseDownYCoordinate = e.Y;
@@ -170,10 +180,28 @@ namespace ShapeMaker
 
             string path = saveFileDialog.FileName;
 
-            IExporter exporter = new Exporter(shapes);
-            exporter.Export(path);
+            this.exporter.Export(path, shapes);
 
             saveFileDialog.Dispose();
+        }
+
+        private void LoadFromFileButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog()
+            {
+                InitialDirectory = $"{Environment.CurrentDirectory}",
+                Filter = "XML (*.xml)|*.xml"
+            };
+
+            openFileDialog.ShowDialog();
+
+            string path = openFileDialog.FileName;
+
+            this.shapes = this.importer.Import(path);
+
+            RedrawCanvas();
+
+            openFileDialog.Dispose();
         }
     }
 }

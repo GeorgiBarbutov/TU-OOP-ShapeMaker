@@ -1,9 +1,10 @@
-﻿using System.Xml.Serialization;
+﻿using ShapeMaker.IO.Contracts;
+using System.Xml.Serialization;
 
 namespace ShapeMaker.IO.Dtos
 {
     [XmlType("Circle")]
-    public class CircleDto
+    public class CircleDto : IShapeDto
     {
         [XmlElement("CenterX")]
         public float CenterX { get; set; }

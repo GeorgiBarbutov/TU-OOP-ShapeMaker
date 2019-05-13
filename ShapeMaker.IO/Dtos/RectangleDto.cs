@@ -1,9 +1,10 @@
-﻿using System.Xml.Serialization;
+﻿using ShapeMaker.IO.Contracts;
+using System.Xml.Serialization;
 
 namespace ShapeMaker.IO.Dtos
 {
     [XmlType("Rectangle")]
-    public class RectangleDto
+    public class RectangleDto : IShapeDto
     {
         [XmlElement("PointX")]
         public float PointX { get; set; }

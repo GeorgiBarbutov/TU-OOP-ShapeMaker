@@ -102,6 +102,7 @@
             this.LoadFromFileButton.TabIndex = 5;
             this.LoadFromFileButton.Text = "Load From File";
             this.LoadFromFileButton.UseVisualStyleBackColor = true;
+            this.LoadFromFileButton.Click += new System.EventHandler(this.LoadFromFileButton_Click);
             // 
             // NewShapeAreaLabel
             // 

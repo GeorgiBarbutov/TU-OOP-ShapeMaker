@@ -1,4 +1,7 @@
-﻿using ShapeMaker.Models.Contracts;
+﻿using ShapeMaker.Contracts;
+using ShapeMaker.IO;
+using ShapeMaker.IO.Contracts;
+using ShapeMaker.Models.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -12,13 +15,15 @@ namespace ShapeMaker
         [STAThread]
         static void Main()
         {
-            List<IShape> list = new List<IShape>();
-            ShapeFactory shapeFactory = new ShapeFactory();
+            IList<IShape> list = new List<IShape>();
+            IShapeFactory shapeFactory = new ShapeFactory();
+            IImporter importer = new Importer();
+            IExporter exporter = new Exporter();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Scene scene = new Scene(list, shapeFactory);
+            Scene scene = new Scene(list, shapeFactory, exporter, importer);
 
             Application.Run(scene);
         }

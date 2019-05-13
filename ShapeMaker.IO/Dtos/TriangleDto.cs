@@ -1,9 +1,10 @@
-﻿using System.Xml.Serialization;
+﻿using ShapeMaker.IO.Contracts;
+using System.Xml.Serialization;
 
 namespace ShapeMaker.IO.Dtos
 {
     [XmlType("Triangle")]
-    public class TriangleDto
+    public class TriangleDto : IShapeDto
     {
         [XmlElement("PointAX")]
         public float PointAX { get; set; }
