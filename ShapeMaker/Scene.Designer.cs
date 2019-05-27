@@ -34,8 +34,8 @@
             this.removeShapeButton = new System.Windows.Forms.Button();
             this.SaveToFileButton = new System.Windows.Forms.Button();
             this.LoadFromFileButton = new System.Windows.Forms.Button();
-            this.NewShapeAreaLabel = new System.Windows.Forms.Label();
-            this.NewShapeAreaNumber = new System.Windows.Forms.Label();
+            this.SelectedShapeAreaLabel = new System.Windows.Forms.Label();
+            this.SelectedShapeAreaNumber = new System.Windows.Forms.Label();
             this.TotalAreaTakenNumber = new System.Windows.Forms.Label();
             this.TotalAreaTakenLablel = new System.Windows.Forms.Label();
             this.EditShapeButton = new System.Windows.Forms.Button();
@@ -104,23 +104,23 @@
             this.LoadFromFileButton.UseVisualStyleBackColor = true;
             this.LoadFromFileButton.Click += new System.EventHandler(this.LoadFromFileButton_Click);
             // 
-            // NewShapeAreaLabel
+            // SelectedShapeAreaLabel
             // 
-            this.NewShapeAreaLabel.AutoSize = true;
-            this.NewShapeAreaLabel.Location = new System.Drawing.Point(12, 18);
-            this.NewShapeAreaLabel.Name = "NewShapeAreaLabel";
-            this.NewShapeAreaLabel.Size = new System.Drawing.Size(91, 13);
-            this.NewShapeAreaLabel.TabIndex = 6;
-            this.NewShapeAreaLabel.Text = "New Shape Area:";
+            this.SelectedShapeAreaLabel.AutoSize = true;
+            this.SelectedShapeAreaLabel.Location = new System.Drawing.Point(12, 18);
+            this.SelectedShapeAreaLabel.Name = "SelectedShapeAreaLabel";
+            this.SelectedShapeAreaLabel.Size = new System.Drawing.Size(111, 13);
+            this.SelectedShapeAreaLabel.TabIndex = 6;
+            this.SelectedShapeAreaLabel.Text = "Selected Shape Area:";
             // 
-            // NewShapeAreaNumber
+            // SelectedShapeAreaNumber
             // 
-            this.NewShapeAreaNumber.AutoSize = true;
-            this.NewShapeAreaNumber.Location = new System.Drawing.Point(109, 18);
-            this.NewShapeAreaNumber.Name = "NewShapeAreaNumber";
-            this.NewShapeAreaNumber.Size = new System.Drawing.Size(22, 13);
-            this.NewShapeAreaNumber.TabIndex = 7;
-            this.NewShapeAreaNumber.Text = "0.0";
+            this.SelectedShapeAreaNumber.AutoSize = true;
+            this.SelectedShapeAreaNumber.Location = new System.Drawing.Point(109, 18);
+            this.SelectedShapeAreaNumber.Name = "SelectedShapeAreaNumber";
+            this.SelectedShapeAreaNumber.Size = new System.Drawing.Size(22, 13);
+            this.SelectedShapeAreaNumber.TabIndex = 7;
+            this.SelectedShapeAreaNumber.Text = "0.0";
             // 
             // TotalAreaTakenNumber
             // 
@@ -158,8 +158,8 @@
             this.Controls.Add(this.EditShapeButton);
             this.Controls.Add(this.TotalAreaTakenNumber);
             this.Controls.Add(this.TotalAreaTakenLablel);
-            this.Controls.Add(this.NewShapeAreaNumber);
-            this.Controls.Add(this.NewShapeAreaLabel);
+            this.Controls.Add(this.SelectedShapeAreaNumber);
+            this.Controls.Add(this.SelectedShapeAreaLabel);
             this.Controls.Add(this.LoadFromFileButton);
             this.Controls.Add(this.SaveToFileButton);
             this.Controls.Add(this.removeShapeButton);
@@ -181,8 +181,8 @@
         private System.Windows.Forms.Button removeShapeButton;
         private System.Windows.Forms.Button SaveToFileButton;
         private System.Windows.Forms.Button LoadFromFileButton;
-        private System.Windows.Forms.Label NewShapeAreaLabel;
-        private System.Windows.Forms.Label NewShapeAreaNumber;
+        private System.Windows.Forms.Label SelectedShapeAreaLabel;
+        private System.Windows.Forms.Label SelectedShapeAreaNumber;
         private System.Windows.Forms.Label TotalAreaTakenNumber;
         private System.Windows.Forms.Label TotalAreaTakenLablel;
         private System.Windows.Forms.Button EditShapeButton;

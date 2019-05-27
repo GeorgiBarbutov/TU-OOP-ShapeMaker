@@ -7,12 +7,12 @@ namespace ShapeMaker.Contracts
     {
         IShape CreateTriangle(float pointAXCoordinate, float pointAYCoordinate,
             float pointBXCoordinate, float pointBYCoordinate,
-            float pointCXCoordinate, float pointCYCoordinate, Color color);
+            float pointCXCoordinate, float pointCYCoordinate, Color color, int currentLayer);
 
         IShape CreateRectangle(float pointXCoordinate, float pointYCoordinate,
-            float width, float height, Color color);
+            float width, float height, Color color, int currentLayer);
 
         IShape CreateCicle(float centerXCoordinate, float centerYCoordinate,
-            float radius, Color color);
+            float radius, Color color, int currentLayer);
     }
 }

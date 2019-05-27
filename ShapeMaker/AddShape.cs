@@ -8,16 +8,16 @@ namespace ShapeMaker
 {
     public partial class AddShape : Form
     {
-        private static Color DEFAULT_SHAPE_COLOR = Color.Black;
+        private IShapeFactory shapeFactory;
+        private int currentMaxLayer;
 
-        IShapeFactory shapeFactory;
-
-        public AddShape(IShapeFactory shapeFactory)
+        public AddShape(IShapeFactory shapeFactory, int currentMaxLayer)
         {
             InitializeComponent();
             
             this.shapeFactory = shapeFactory;
-            this.ShapeColorSelected.BackColor = DEFAULT_SHAPE_COLOR;
+            this.currentMaxLayer = currentMaxLayer;
+            this.ShapeColorSelected.BackColor = Color.Black;
         }
 
         public IShape Shape { get; private set; }
@@ -27,6 +27,7 @@ namespace ShapeMaker
             this.Close();
         }
 
+        //Changes option visibility depending on shape type
         private void TriangleRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             ChangeTriangleOptionsVisibility(true);
@@ -86,6 +87,7 @@ namespace ShapeMaker
             this.PointCYCoordinateNumber.Visible = isVisible;
         }
 
+        //Uses shapeFactory to create a new shape depending on shape type than closes form
         private void AddShapeButton_Click(object sender, EventArgs e)
         {
             if(this.TriangleRadioButton.Checked)
@@ -93,23 +95,25 @@ namespace ShapeMaker
                 this.Shape = this.shapeFactory.CreateTriangle((float)this.PointAXCoordinateNumber.Value,
                     (float)this.PointAYCoordinateNumber.Value, (float)this.PointBXCoordinateNumber.Value,
                     (float)this.PointBYCoordinateNumber.Value, (float)this.PointCXCoordinateNumber.Value,
-                    (float)this.PointCYCoordinateNumber.Value, this.ShapeColorSelected.BackColor);
+                    (float)this.PointCYCoordinateNumber.Value, this.ShapeColorSelected.BackColor, 
+                    this.currentMaxLayer);
             }
             else if(this.RectangleRadioButton.Checked)
             {
                 this.Shape = this.shapeFactory.CreateRectangle((float)this.PointXNumber.Value,
                     (float)this.PointYNumber.Value, (float)this.WidthNumber.Value,
-                    (float)this.HeightNumber.Value,  this.ShapeColorSelected.BackColor);
+                    (float)this.HeightNumber.Value,  this.ShapeColorSelected.BackColor, this.currentMaxLayer);
             }
             else
             {
                 this.Shape = this.shapeFactory.CreateCicle( (float)this.CenterXNumber.Value,
                     (float)this.CenterYNumber.Value, (float)this.RadiusNumber.Value,
-                    this.ShapeColorSelected.BackColor);
+                    this.ShapeColorSelected.BackColor, this.currentMaxLayer);
             }
             this.Close();
         }
 
+        //Opens ColorDialog and selects color
         private void SelectColorButton_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new ColorDialog();
@@ -117,6 +121,8 @@ namespace ShapeMaker
             colorDialog.ShowDialog();
 
             this.ShapeColorSelected.BackColor = colorDialog.Color;
+
+            colorDialog.Dispose();
         }
     }
 }

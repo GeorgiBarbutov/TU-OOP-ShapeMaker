@@ -13,7 +13,7 @@ namespace ShapeMaker.IO
 {
     public class Importer : IImporter
     {
-        public IList<IShape> Import(string path)
+        public IList<IShape> Import(string path, out int currentMaxLayer)
         {
             ShapesDto shapesDto = ImportShapesDtoFromXml(path);
 
@@ -21,18 +21,26 @@ namespace ShapeMaker.IO
 
             GetShapesFromDto(shapesDto, shapes);
 
+            //Set the maxLayer to the highest number.
+            currentMaxLayer = shapes.OrderByDescending(s => s.CurrentLayer).ToArray()[0].CurrentLayer;
+
             return shapes;
         }
 
+        //Creates shapes from ShapesDtos and adds them to shapes list
         private static void GetShapesFromDto(ShapesDto shapesDto, IList<IShape> shapes)
         {
             foreach (CircleDto circleDto in shapesDto.Circles)
             {
                 PointF center = new PointF(circleDto.CenterX, circleDto.CenterY);
+
                 float radius = circleDto.Radius;
+
                 Color color = GetColor(circleDto);
 
-                IShape circle = new Circle(center, radius, color);
+                int currentLayer = circleDto.CurrentLayer;
+
+                IShape circle = new Circle(center, radius, color, currentLayer);
 
                 shapes.Add(circle);
             }
@@ -45,7 +53,9 @@ namespace ShapeMaker.IO
 
                 Color color = GetColor(triangleDto);
 
-                IShape triangle = new Triangle(pointA, pointB, pointC, color);
+                int currentLayer = triangleDto.CurrentLayer;
+
+                IShape triangle = new Triangle(pointA, pointB, pointC, color, currentLayer);
 
                 shapes.Add(triangle);
             }
@@ -53,16 +63,21 @@ namespace ShapeMaker.IO
             foreach (RectangleDto rectangleDto in shapesDto.Rectangles)
             {
                 PointF point = new PointF(rectangleDto.PointX, rectangleDto.PointY);
+
                 float height = rectangleDto.Height;
                 float width = rectangleDto.Width;
+
                 Color color = GetColor(rectangleDto);
 
-                IShape rectangle = new ShapeMaker.Models.Rectangle(point, width, height, color);
+                int currentLayer = rectangleDto.CurrentLayer;
+
+                IShape rectangle = new ShapeMaker.Models.Rectangle(point, width, height, color, currentLayer);
 
                 shapes.Add(rectangle);
             }
         }
 
+        //Uses XmlSerializer to import shapes from Xml file
         private static ShapesDto ImportShapesDtoFromXml(string path)
         {
             XmlRootAttribute rootAttribute = new XmlRootAttribute("Shapes");
@@ -78,6 +93,7 @@ namespace ShapeMaker.IO
             return shapesDto;
         }
 
+        //Gets the color
         private static Color GetColor(IShapeDto shapeDto)
         {
             string colorArgument = shapeDto.Color.Split('[')[1].Split(']')[0];

@@ -9,9 +9,12 @@ namespace ShapeMaker.Models
 
         public Color Color => this.color;
 
-        public Shape(Color color)
+        public int CurrentLayer { get; private set; }
+
+        public Shape(Color color, int currentLayer)
         {
             this.color = color;
+            this.CurrentLayer = currentLayer;
         }
 
         public abstract float CalculateArea();
@@ -24,6 +27,7 @@ namespace ShapeMaker.Models
         {
         }
 
+        //ChangesColor
         public void ChangeColor(Color newColor)
         {
             this.color = newColor;
@@ -34,5 +38,11 @@ namespace ShapeMaker.Models
         }
 
         public abstract bool Contains(PointF point);
+
+        //Changes currentLayer
+        public void ChangeCurrentLayer(int newLayer)
+        {
+            this.CurrentLayer = newLayer;
+        }
     }
 }

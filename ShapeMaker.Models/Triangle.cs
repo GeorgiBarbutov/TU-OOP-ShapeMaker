@@ -6,7 +6,8 @@ namespace ShapeMaker.Models
 {
     public class Triangle : Shape, ITriangle
     {
-        public Triangle(PointF pointA, PointF pointB, PointF pointC, Color color) : base(color)
+        public Triangle(PointF pointA, PointF pointB, PointF pointC, Color color, int currentLayer) 
+            : base(color, currentLayer)
         {
             SetValues(pointA, pointB, pointC);
         }
@@ -29,6 +30,7 @@ namespace ShapeMaker.Models
             this.PointC = pointC;
         }
 
+        //Draws a triangle
         public override void Draw(Graphics graphics)
         {
             Brush brush = new SolidBrush(this.color);
@@ -66,17 +68,14 @@ namespace ShapeMaker.Models
 
         public override bool Contains(PointF point)
         {
-            float d1, d2, d3;
-            bool has_neg, has_pos;
+            float d1 = Sign(point, this.PointA, this.PointB);
+            float d2 = Sign(point, this.PointB, this.PointC);
+            float d3 = Sign(point, this.PointC, this.PointA);
 
-            d1 = Sign(point, this.PointA, this.PointB);
-            d2 = Sign(point, this.PointB, this.PointC);
-            d3 = Sign(point, this.PointC, this.PointA);
+            bool hasNeg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+            bool hasPos = (d1 > 0) || (d2 > 0) || (d3 > 0);
 
-            has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
-            has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
-
-            return !(has_neg && has_pos);
+            return !(hasNeg && hasPos);
         }
 
         private float Sign(PointF point1, PointF point2, PointF point3)

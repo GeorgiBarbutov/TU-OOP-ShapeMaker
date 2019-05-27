@@ -7,6 +7,8 @@ namespace ShapeMaker.Models.Contracts
     {
         Color Color { get; }
 
+        int CurrentLayer { get; }
+
         void Draw(Graphics graphics);
 
         float CalculateArea();
@@ -27,5 +29,7 @@ namespace ShapeMaker.Models.Contracts
         void ChangeColor(Color newColor);
 
         void Outline(Graphics graphics, Color color);
+
+        void ChangeCurrentLayer(int newLayer);
     }
 }

@@ -20,5 +20,8 @@ namespace ShapeMaker.IO.Dtos
 
         [XmlElement("Color")]
         public string Color { get; set; }
+
+        [XmlElement("Layer")]
+        public int CurrentLayer { get; set; }
     }
 }

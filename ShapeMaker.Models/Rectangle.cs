@@ -5,7 +5,8 @@ namespace ShapeMaker.Models
 {
     public class Rectangle : Shape, IRectangle
     {
-        public Rectangle(PointF point, float width, float height, Color color) : base(color)
+        public Rectangle(PointF point, float width, float height, Color color, int currentLayer) 
+            : base(color, currentLayer)
         {
             SetValues(point, width, height);
         }
@@ -28,6 +29,7 @@ namespace ShapeMaker.Models
             this.Height = height;
         }
 
+        //Draws a rectangle
         public override void Draw(Graphics graphics)
         {
             Brush brush = new SolidBrush(this.color);

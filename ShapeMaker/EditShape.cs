@@ -25,6 +25,7 @@ namespace ShapeMaker
 
         public IShape Shape { get; private set; }
 
+        //Changes visual setings depending on selected shape radio button
         private void SetUpEditOptions()
         {
             if(this.Shape.GetType().Name == "Triangle")
@@ -127,6 +128,7 @@ namespace ShapeMaker
             this.Close();
         }
 
+        //Opens ColorDialog and selects color
         private void SelectColorButton_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new ColorDialog();
@@ -136,8 +138,11 @@ namespace ShapeMaker
             this.ShapeColorSelected.BackColor = colorDialog.Color;
 
             this.newColor = colorDialog.Color;
+
+            colorDialog.Dispose();
         }
 
+        //Saves updated properties depending on shape type and closes form.
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
             if(this.Shape.GetType().Name == "Circle")

@@ -6,13 +6,12 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using ShapeMaker.IO.Contracts;
-using ShapeMaker.IO;
 
 namespace ShapeMaker
 {
     public partial class Scene : Form
     {
-        private Color SELECTED_FIGURE_OUTLINE_COLOR = Color.IndianRed;
+        private const int DEFAULT_CURRENT_MAX_LAYER = 0;
 
         private IList<IShape> shapes;
         private IShapeFactory shapeFactory;
@@ -21,6 +20,8 @@ namespace ShapeMaker
         private float mouseDownYCoordinate;
         private IExporter exporter;
         private IImporter importer;
+        private int currentMaxLayer;
+        private Graphics graphics;
 
         public Scene(IList<IShape> shapes, IShapeFactory shapeFactory, IExporter exporter, IImporter importer)
         {
@@ -30,14 +31,18 @@ namespace ShapeMaker
             this.shapeFactory = shapeFactory;
             this.exporter = exporter;
             this.importer = importer;
+            this.graphics = this.Canvas.CreateGraphics();
+
+            this.currentMaxLayer = DEFAULT_CURRENT_MAX_LAYER;
         }
 
+        //Opens AddShape Form. Gets the new Shape. Adds it to shapes. Sets selectedShapeArea to 0.0
         private void AddShapeButton_Click(object sender, EventArgs e)
         {
-            AddShape addShapeForm = new AddShape(this.shapeFactory);
-            addShapeForm.ShowDialog();
+            this.currentMaxLayer += 1;
 
-            Graphics graphics = this.Canvas.CreateGraphics();
+            AddShape addShapeForm = new AddShape(this.shapeFactory, this.currentMaxLayer);
+            addShapeForm.ShowDialog();
 
             if (addShapeForm.Shape != null)
             {
@@ -45,18 +50,16 @@ namespace ShapeMaker
 
                 this.shapes.Add(newShape);
 
-                newShape.Draw(graphics);
+                this.selectedFigure = null;
+                this.SelectedShapeAreaNumber.Text = "0.0";
 
-                float areaTaken = newShape.CalculateArea();
-                this.NewShapeAreaNumber.Text = $"{areaTaken:f1}";
-
-                float totalAreaTaken = this.shapes.Sum(s => s.CalculateArea());
-                this.TotalAreaTakenNumber.Text = $"{totalAreaTaken:f1}";
+                RedrawCanvas();
             }
 
-            graphics.Dispose();
+            addShapeForm.Dispose();
         }
 
+        //Opens EditShapeForm to edit shape and than redraws the canvas.
         private void EditShapeButton_Click(object sender, EventArgs e)
         {
             if (this.selectedFigure != null)
@@ -65,21 +68,31 @@ namespace ShapeMaker
                 editShapeForm.ShowDialog();
                 
                 RedrawCanvas();
+
+                editShapeForm.Dispose();
             }
         }
 
+        //Clears the canvas than draws each figure startting from the lowes layer. Sets totalAreaTaken.
+        //Keeps selected figure outline.
         private void RedrawCanvas()
         {
             this.Canvas.Refresh();
 
-            Graphics graphics = this.Canvas.CreateGraphics();
-
-            foreach (IShape shape in this.shapes.Reverse())
+            foreach (IShape shape in this.shapes.OrderBy(s => s.CurrentLayer))
             {
-                shape.Draw(graphics);
+                shape.Draw(this.graphics);
             }
 
-            graphics.Dispose();
+            float totalAreaTaken = this.shapes.Sum(s => s.CalculateArea());
+            this.TotalAreaTakenNumber.Text = $"{totalAreaTaken:f1}";
+
+            if(this.selectedFigure != null)
+            {
+                this.selectedFigure.Outline(this.graphics, Color.IndianRed);
+
+                this.SelectedShapeAreaNumber.Text = $"{this.selectedFigure.CalculateArea():f1}";
+            }
         }
 
         private void RemoveShapeButton_Click(object sender, EventArgs e)
@@ -87,15 +100,17 @@ namespace ShapeMaker
             this.shapes.Remove(this.selectedFigure);
 
             this.selectedFigure = null;
+            this.SelectedShapeAreaNumber.Text = "0.0";
 
             RedrawCanvas();
-
-            this.NewShapeAreaNumber.Text = "0.0";
-
-            float totalAreaTaken = this.shapes.Sum(s => s.CalculateArea());
-            this.TotalAreaTakenNumber.Text = $"{totalAreaTaken:f1}";
         }
 
+        //Sets mouse x and y coordinates. Gets cursor position. Removes ouline of the selected shape if any.
+        //Tries to find if cursor is inside a shape when clicked. 
+        //If its not - deselectes selected shape if any and sets selected area to 0.0
+        //If it is - sets new selected shape. Sets selected shape area. Increaces current max layer and sets shape layer
+        //And draws shape.
+        //Note: always selects the top most shape even if 2 or more shapes are on top of one another
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
             this.mouseDownXCoordinate = e.X;
@@ -105,27 +120,30 @@ namespace ShapeMaker
             {
                 PointF cursorPosition = new PointF(e.X, e.Y);
 
-                Graphics graphics = this.Canvas.CreateGraphics();
-
                 if (this.selectedFigure != null)
                 {
-                    this.selectedFigure.Outline(graphics, this.selectedFigure.Color);
+                    this.selectedFigure.Outline(this.graphics, this.selectedFigure.Color);
                 }
 
                 bool cursorIsOnAnyShape = false;
 
-                foreach (IShape shape in shapes)
+                foreach (IShape shape in shapes.OrderByDescending(s => s.CurrentLayer))
                 {
                     bool isInside = shape.Contains(cursorPosition);
 
                     if (isInside)
                     {
-                        this.selectedFigure = shape;
+                        this.currentMaxLayer += 1;
 
-                        this.selectedFigure.Draw(graphics);
+                        this.selectedFigure = shape;
+                        this.SelectedShapeAreaNumber.Text = $"{selectedFigure.CalculateArea():f1}";
+
+                        this.selectedFigure.ChangeCurrentLayer(this.currentMaxLayer);
+
+                        this.selectedFigure.Draw(this.graphics);
 
                         cursorIsOnAnyShape = true;
-
+                        
                         break;
                     }
                 }
@@ -133,12 +151,13 @@ namespace ShapeMaker
                 if(!cursorIsOnAnyShape)
                 {
                     this.selectedFigure = null;
+                    this.SelectedShapeAreaNumber.Text = "0.0";
                 }
-
-                graphics.Dispose();
             }
         }
 
+        //If any shape is selected and left mouse button is pressed -> 
+        //Changes shape coordinates and redraws canvas.
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
             if(this.selectedFigure != null && e.Button == MouseButtons.Left)
@@ -147,27 +166,21 @@ namespace ShapeMaker
 
                 RedrawCanvas();
 
-                Graphics graphics = this.Canvas.CreateGraphics();
-
-                this.selectedFigure.Draw(graphics);
-
                 this.mouseDownXCoordinate = e.X;
                 this.mouseDownYCoordinate = e.Y;
             }
         }
 
+        //Draws outline for selected shape if any
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            Graphics graphics = Canvas.CreateGraphics();
-
             if(this.selectedFigure != null)
             {
-                this.selectedFigure.Outline(graphics, SELECTED_FIGURE_OUTLINE_COLOR);
+                this.selectedFigure.Outline(this.graphics, Color.IndianRed);
             }
-
-            graphics.Dispose();
         }
 
+        //Opens SaveFileDialog and saves shapes as xml file.
         private void SaveToFileButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -176,15 +189,19 @@ namespace ShapeMaker
                 Filter = "XML (*.xml)|*.xml"
             };
 
-            saveFileDialog.ShowDialog();
+            DialogResult dialogResult = saveFileDialog.ShowDialog();
 
-            string path = saveFileDialog.FileName;
+            if(dialogResult == DialogResult.OK)
+            {
+                string path = saveFileDialog.FileName;
 
-            this.exporter.Export(path, shapes);
+                this.exporter.Export(path, shapes);
+            }
 
             saveFileDialog.Dispose();
         }
 
+        //Opens OpenFileDialog and loads shapes from xml file than deselects selected figure and redraws canvas
         private void LoadFromFileButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog()
@@ -193,13 +210,19 @@ namespace ShapeMaker
                 Filter = "XML (*.xml)|*.xml"
             };
 
-            openFileDialog.ShowDialog();
+            DialogResult dialogResult = openFileDialog.ShowDialog();
 
-            string path = openFileDialog.FileName;
+            if(dialogResult == DialogResult.OK)
+            {
+                string path = openFileDialog.FileName;
 
-            this.shapes = this.importer.Import(path);
+                this.shapes = this.importer.Import(path, out this.currentMaxLayer);
 
-            RedrawCanvas();
+                this.selectedFigure = null;
+                this.SelectedShapeAreaNumber.Text = "0.0";
+
+                RedrawCanvas();
+            }
 
             openFileDialog.Dispose();
         }

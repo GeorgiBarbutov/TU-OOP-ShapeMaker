@@ -21,6 +21,7 @@ namespace ShapeMaker.IO
             ExportToXml(path, dtos);
         }
 
+        //Uses XmlSerializer to export shapeDtos to xml file
         private static void ExportToXml(string path, ShapesDto dtos)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(ShapesDto), new XmlRootAttribute("Shapes"));
@@ -32,6 +33,7 @@ namespace ShapeMaker.IO
             streamWriter.Dispose();
         }
 
+        //Changes shapes to ShapesDtos
         private ShapesDto GetDtos()
         {
             return new ShapesDto
@@ -41,7 +43,8 @@ namespace ShapeMaker.IO
                     CenterX = ((ICircle)c).Center.X,
                     CenterY = ((ICircle)c).Center.Y,
                     Radius = ((ICircle)c).Radius,
-                    Color = c.Color.ToString()
+                    Color = c.Color.ToString(),
+                    CurrentLayer = c.CurrentLayer
                 }).ToList(),
                 Rectangles = shapes.Where(shape => shape.GetType().Name == "Rectangle").Select(r => new RectangleDto
                 {
@@ -49,9 +52,10 @@ namespace ShapeMaker.IO
                     PointY = ((IRectangle)r).Point.Y,
                     Height = ((IRectangle)r).Height,
                     Width = ((IRectangle)r).Width,
-                    Color = r.Color.ToString()
+                    Color = r.Color.ToString(),
+                    CurrentLayer = r.CurrentLayer
                 }).ToList(),
-                Triangles = shapes.Where(shape => shape.GetType().Name == "Triangles").Select(t => new TriangleDto
+                Triangles = shapes.Where(shape => shape.GetType().Name == "Triangle").Select(t => new TriangleDto
                 {
                     PointAX = ((ITriangle)t).PointA.X,
                     PointAY = ((ITriangle)t).PointA.Y,
@@ -59,7 +63,8 @@ namespace ShapeMaker.IO
                     PointBY = ((ITriangle)t).PointB.Y,
                     PointCX = ((ITriangle)t).PointC.X,
                     PointCY = ((ITriangle)t).PointC.Y,
-                    Color = t.Color.ToString()
+                    Color = t.Color.ToString(),
+                    CurrentLayer = t.CurrentLayer
                 }).ToList()
             };
         }
