@@ -15,7 +15,7 @@ namespace ShapeMaker
 
         private IList<IShape> shapes;
         private IShapeFactory shapeFactory;
-        private IShape selectedFigure;
+        private IShape selectedShape;
         private float mouseDownXCoordinate;
         private float mouseDownYCoordinate;
         private IExporter exporter;
@@ -50,7 +50,7 @@ namespace ShapeMaker
 
                 this.shapes.Add(newShape);
 
-                this.selectedFigure = null;
+                this.selectedShape = null;
                 this.SelectedShapeAreaNumber.Text = "0.0";
 
                 RedrawCanvas();
@@ -62,9 +62,9 @@ namespace ShapeMaker
         //Opens EditShapeForm to edit shape and than redraws the canvas.
         private void EditShapeButton_Click(object sender, EventArgs e)
         {
-            if (this.selectedFigure != null)
+            if (this.selectedShape != null)
             {
-                EditShape editShapeForm = new EditShape(this.selectedFigure);
+                EditShape editShapeForm = new EditShape(this.selectedShape);
                 editShapeForm.ShowDialog();
                 
                 RedrawCanvas();
@@ -87,19 +87,19 @@ namespace ShapeMaker
             float totalAreaTaken = this.shapes.Sum(s => s.CalculateArea());
             this.TotalAreaTakenNumber.Text = $"{totalAreaTaken:f1}";
 
-            if(this.selectedFigure != null)
+            if(this.selectedShape != null)
             {
-                this.selectedFigure.Outline(this.graphics, Color.IndianRed);
+                this.selectedShape.Outline(this.graphics, Color.IndianRed);
 
-                this.SelectedShapeAreaNumber.Text = $"{this.selectedFigure.CalculateArea():f1}";
+                this.SelectedShapeAreaNumber.Text = $"{this.selectedShape.CalculateArea():f1}";
             }
         }
 
         private void RemoveShapeButton_Click(object sender, EventArgs e)
         {
-            this.shapes.Remove(this.selectedFigure);
+            this.shapes.Remove(this.selectedShape);
 
-            this.selectedFigure = null;
+            this.selectedShape = null;
             this.SelectedShapeAreaNumber.Text = "0.0";
 
             RedrawCanvas();
@@ -120,9 +120,9 @@ namespace ShapeMaker
             {
                 PointF cursorPosition = new PointF(e.X, e.Y);
 
-                if (this.selectedFigure != null)
+                if (this.selectedShape != null)
                 {
-                    this.selectedFigure.Outline(this.graphics, this.selectedFigure.Color);
+                    this.selectedShape.Outline(this.graphics, this.selectedShape.Color);
                 }
 
                 bool cursorIsOnAnyShape = false;
@@ -135,12 +135,12 @@ namespace ShapeMaker
                     {
                         this.currentMaxLayer += 1;
 
-                        this.selectedFigure = shape;
-                        this.SelectedShapeAreaNumber.Text = $"{selectedFigure.CalculateArea():f1}";
+                        this.selectedShape = shape;
+                        this.SelectedShapeAreaNumber.Text = $"{selectedShape.CalculateArea():f1}";
 
-                        this.selectedFigure.ChangeCurrentLayer(this.currentMaxLayer);
+                        this.selectedShape.ChangeCurrentLayer(this.currentMaxLayer);
 
-                        this.selectedFigure.Draw(this.graphics);
+                        this.selectedShape.Draw(this.graphics);
 
                         cursorIsOnAnyShape = true;
                         
@@ -150,7 +150,7 @@ namespace ShapeMaker
 
                 if(!cursorIsOnAnyShape)
                 {
-                    this.selectedFigure = null;
+                    this.selectedShape = null;
                     this.SelectedShapeAreaNumber.Text = "0.0";
                 }
             }
@@ -160,9 +160,9 @@ namespace ShapeMaker
         //Changes shape coordinates and redraws canvas.
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if(this.selectedFigure != null && e.Button == MouseButtons.Left)
+            if(this.selectedShape != null && e.Button == MouseButtons.Left)
             {
-                this.selectedFigure.Move(e.X - this.mouseDownXCoordinate, e.Y - this.mouseDownYCoordinate);
+                this.selectedShape.Move(e.X - this.mouseDownXCoordinate, e.Y - this.mouseDownYCoordinate);
 
                 RedrawCanvas();
 
@@ -174,9 +174,9 @@ namespace ShapeMaker
         //Draws outline for selected shape if any
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            if(this.selectedFigure != null)
+            if(this.selectedShape != null)
             {
-                this.selectedFigure.Outline(this.graphics, Color.IndianRed);
+                this.selectedShape.Outline(this.graphics, Color.IndianRed);
             }
         }
 
@@ -218,7 +218,7 @@ namespace ShapeMaker
 
                 this.shapes = this.importer.Import(path, out this.currentMaxLayer);
 
-                this.selectedFigure = null;
+                this.selectedShape = null;
                 this.SelectedShapeAreaNumber.Text = "0.0";
 
                 RedrawCanvas();
